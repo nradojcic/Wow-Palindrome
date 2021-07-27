@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
   <head>
-    <title>App Name: a Coding Project by Nebojsa</title>
+    <title>Wow!: a Coding Project by Nebojsa</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -17,11 +17,11 @@
       crossorigin="anonymous"
     />
 
-    <!-- Google Fonts Racing Sans One -->
+    <!-- Google Fonts Lobster -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
       rel="stylesheet"
     />
 
@@ -44,7 +44,7 @@
             height="24"
             alt="Nebojsa Logo"
           />
-          APP NAME</a
+          Wow!</a
         >
         <button
           class="navbar-toggler"
@@ -71,7 +71,12 @@
               <a class="nav-link" href="code.html">The Code</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" target="_blank">GitHub Repo</a>
+              <a
+                class="nav-link"
+                href="https://github.com/nradojcic/Wow-Palindrome"
+                target="_blank"
+                >GitHub Repo</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://nebojsa.ca" target="_blank"
@@ -85,7 +90,55 @@
 
     <!-- === Main Section === -->
     <main class="flex-shrink-0">
-      <div class="container mt-5"></div>
+      <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-lg-2">
+          <div class="col">
+            <h1 class="display-5 fw-bold lh-1 mb-3">
+              <span class="logoFont">Wow! Palindrome</span> - a Coding Project
+            </h1>
+            <h4 class="lead mb-5">
+              A <strong>Palindrome</strong> is a word, phrase, or sequence that
+              reads the same forwards and backwards. For example -
+              <strong
+                >Wow, Racecar, Kayak, Radar, Taco Cat, Madam I'm Adam</strong
+              >, etc. Write a program that checks if the phrase entered is a
+              Palindrome.
+            </h4>
+          </div>
+          <div class="col">
+            <h5 class="border-1 border-bottom border-danger">
+              Enter a Word, Phrase or Sentence to check for a Palindrome
+            </h5>
+            <form class="row gx-3 gy-2">
+              <div class="col">
+                <input
+                  type="text"
+                  id="userString"
+                  class="form-control"
+                  placeholder="Enter a String"
+                  aria-label="Enter a String"
+                />
+              </div>
+              <div class="col-12">
+                <button type="button" id="btnSubmit" class="btn btn-danger">
+                  Reverse Me
+                </button>
+              </div>
+              <div
+                class="alert mt-5 invisible fade show"
+                id="alert"
+                role="alert"
+              >
+                <h4 class="alert-heading" id="alert-heading">Well Done!</h4>
+                <hr />
+                <p class="mb-0" id="msg">
+                  <!-- Insert a Message Here -->
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- === Footer Section === -->
@@ -156,5 +209,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="js/site.js"></script>
+    <script>
+      document.getElementById("btnSubmit").addEventListener("click", getValue);
+    </script>
   </body>
 </html>

@@ -1,16 +1,12 @@
 :root {
-  --primary-color: #1d5888;
-  --secondary-color: #ff993b;
-  --dark-color: #292929;
+  --primary-color: #292929;
+  --secondary-color: #3d9ef0;
+  --dark-color: #1b376a;
   --white-color: #e7e7e7;
 }
 
 .logoFont {
-  font-family: "Racing Sans One", cursive;
-}
-
-#btnSubmit {
-  background-color: var(--secondary-color);
+  font-family: "Lobster", cursive;
 }
 
 body {
@@ -19,6 +15,17 @@ body {
 
 nav {
   background-color: var(--dark-color);
+}
+
+#btnSubmit {
+  background-color: var(--secondary-color) !important;
+}
+
+#alert {
+  /* color: var(--white-color);
+  background-color: var(--dark-color);
+  opacity: 0.75; */
+  border-radius: 1rem;
 }
 
 footer {

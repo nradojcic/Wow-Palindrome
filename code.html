@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
   <head>
-    <title>App Name: a Coding Project by Nebojsa</title>
+    <title>Wow!: a Coding Project by Nebojsa</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -17,11 +17,11 @@
       crossorigin="anonymous"
     />
 
-    <!-- Google Fonts Racing Sans One -->
+    <!-- Google Fonts Lobster -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
       rel="stylesheet"
     />
 
@@ -45,7 +45,7 @@
             height="24"
             alt="Nebojsa Logo"
           />
-          APP NAME</a
+          Wow!</a
         >
         <button
           class="navbar-toggler"
@@ -72,7 +72,12 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" target="_blank">GitHub Repo</a>
+              <a
+                class="nav-link"
+                href="https://github.com/nradojcic/Wow-Palindrome"
+                target="_blank"
+                >GitHub Repo</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://nebojsa.ca" target="_blank"
@@ -88,15 +93,74 @@
     <main class="flex-shrink-0">
       <div class="container py-5 px-5 mt-5">
         <h2 class="border-1 border-bottom border-dark">
-          The Code for <span class="logoFont">APP NAME</span>
+          The Code for <span class="logoFont">Wow! Palindrome</span>
         </h2>
         <div class="row row-cols-1 row-cols-lg-2">
           <!-- Left - Prism Code - paste your code between <code> tags -->
           <div class="col-lg-8">
             <pre class="line-numbers"><code class="language-javascript">
-                // Call Hello World
-                function HelloWorld() {
-                    alert("Hello World");
+                // get user input
+                // Controller function
+                function getValue() {
+                  // make sure the alert box is off and not styled at the beginning
+                  document.getElementById("alert").classList.add("invisible");
+                  document.getElementById("alert").classList
+                      .remove("alert-danger", "alert-success");
+
+                  // get user string from the page
+                  let userString = document.getElementById("userString").value;
+
+                  // check for a palindrome
+                  let returnObj = checkForPalindrome(userString);
+
+                  // display a message to the webpage
+                  displayMessage(returnObj);
+                }
+
+                // check if string is a palindrome
+                // Logic function
+                function checkForPalindrome(userString) {
+                  // convert to lowercase, and then ...
+                  userString = userString.toLowerCase();
+
+                  // ... remove any spaces and special characters before checking
+                  let regex = /[^a-z0-9]/gi;
+                  userString = userString.replace(regex, "");
+
+                  // reverse the string
+                  let revString = [];
+                  let returnObj = {};
+
+                  for (let i = userString.length - 1; i >= 0; i--) {
+                    revString += userString[i];
+                  }
+
+                  // check if both strings are the same
+                  if (revString == userString) {
+                    returnObj.msg = "Well  done! Yes! You entered a Palindrome!";
+                    document.getElementById("alert").classList.add("alert-success");
+
+                  } else {
+                    returnObj.msg = "Sorry! No, it's NOT a Palindrome!";
+                    document.getElementById("alert").classList.add("alert-danger");
+                  }
+
+                  returnObj.reversed = revString;
+
+                  // return the object
+                  return returnObj;
+                }
+
+                // display a message on the webpage
+                // View function
+                function displayMessage(returnObj) {
+                  // write heading and the message
+                  document.getElementById("alert-heading").innerHTML = returnObj.msg;
+                  document.getElementById("msg").innerHTML = 
+                      `Your Phrase reversed is: <strong>${returnObj.reversed}</strong>`;
+
+                  // turn the alert on
+                  document.getElementById("alert").classList.remove("invisible");
                 }
                 </code>
             </pre>
@@ -106,57 +170,67 @@
             <p class="mt-3">
               The Code is structured in <strong>three functions</strong>.
             </p>
-            <h5 class="mt-4">1) <strong>getValues</strong> function</h5>
+            <h5 class="mt-4">1) <strong>getValue</strong> function</h5>
             <p>
-              Function <strong>getValues</strong> is the Controller function. It
+              Function <strong>getValue</strong> is the Controller function. It
               is triggered by an onClick event connected to a button on the App
-              page. It then collects Start and End Values from the input fields
-              on the page, and routes requests to other functions.
+              page.
             </p>
             <p>
-              It validates the input, converting the values to integers. If
-              entered values are valid integer numbers it will call the
-              <strong>generateNumbers</strong> function and then the
-              <strong>displayNumbers</strong> function, otherwise it will show
-              an alert to enter only integer values.
-            </p>
-            <h5 class="mt-5">2) <strong>generateNumbers</strong> function</h5>
-            <p>
-              Function <strong>generateNumbers</strong> is the Logic function.
-              It generates numbers from Start to End Values.
+              It first makes sure the alert display box is hidden, by adding the
+              <strong>invisible</strong> CSS class to it. And removing any
+              pre-existing styling classes.
             </p>
             <p>
-              It accepts Start and End Value arguments, and then runs a FOR
-              loop, adding values one by one to <strong>numbers</strong> array.
-              The function then returns the <strong>numbers</strong> array.
-            </p>
-            <h5 class="mt-5">3) <strong>displayNumbers</strong> function</h5>
-            <p>
-              Function <strong>displayNumbers</strong> is the View function. It
-              displays numbers on the web page.
+              It then collects text from the input field on the page, and routes
+              the request to other functions.
             </p>
             <p>
-              It accepts an array of numbers as the argument. And then uses
-              template strings to format an output table.
+              Then it calls <strong>checkForPalindrome</strong> function to
+              reverse and compare the collected string, and then the
+              <strong>displayMessage</strong> function to show the alert box
+              with appropriate message.
+            </p>
+            <h5 class="mt-5">
+              2) <strong>checkForPalindrome</strong> function
+            </h5>
+            <p>
+              Function <strong>checkForPalindrome</strong> is the Logic
+              function. It reverses the user's string and compares it to the
+              original one.
             </p>
             <p>
-              A FOR loop runs from the start to the end of
-              <strong>numbers</strong> array. For each
-              <strong>number</strong> we check if it's odd or even, and assign
-              them appropriate <strong>odd</strong> or <strong>even</strong> CSS
-              class name.
+              It accepts <strong>userString</strong> as the argument. It
+              converts it to lower case and removes any spaces, or special
+              characters from the string for easier comparison.
             </p>
             <p>
-              Each output table row is then constructed using template literals.
-              It consists of &lt;tr> and &lt;td> HTML elements with interpolated
-              values of each number and its appropriate CSS class name. Table
-              row is then concatenated to the previous ones.
+              The string is then reversed using a
+              <strong>FOR loop BACKWARDS</strong>.
             </p>
             <p>
-              After all the rows have been added together,
-              <strong>tableRows</strong> template string containing data for the
-              whole table is pushed to the HTML page and displayed on the
-              screen.
+              The reversed string is then compared to forward string version.
+              Based on the results of the comparison, return object
+              <strong>returnObj</strong> is assigned the header message and the
+              reversed string. The appropriate styling CSS class is assigned to
+              the alert box element, to show different color.
+            </p>
+            <p>
+              The function then returns the return object -
+              <strong>returnObj</strong>.
+            </p>
+            <h5 class="mt-5">3) <strong>displayMessage</strong> function</h5>
+            <p>
+              Function <strong>displayMessage</strong> is the View function. It
+              displays alert with the header message and the reversed string on
+              the web page.
+            </p>
+            <p>
+              It accepts an object as the argument. Then it inserts the heading
+              and the message from the object into the alert box element. And
+              then shows the message on the screen by removing
+              <strong>invisible</strong> CSS class from the alert box that was
+              made hidden at the beginning of the program.
             </p>
           </div>
         </div>
